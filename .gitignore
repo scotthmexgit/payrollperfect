@@ -24,7 +24,7 @@ pnpm-debug.log*
 .idea/
 
 # project-specific
-# per-prompt notes stay local, not in git
-docs/2026-*/
+# session working notes stay local, not in git
+docs/sessions/
 .env.local
 *.log

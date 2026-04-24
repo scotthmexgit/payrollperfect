@@ -73,7 +73,7 @@ alternatives considered, affected tracker IDs, and reversibility.
 1. **Investigate first.** Before any scaffold or code, produce an
    inventory of what currently exists at `/var/www/payrollperfect/` and
    what the live site serves. Write to
-   `~/payrollperfect/docs/YYYY-MM-DD/` before touching anything.
+   `~/payrollperfect/docs/sessions/YYYY-MM-DD/` before touching anything.
 2. **Minimal fixes / minimal scope.** Address exactly what the spec
    asks. No "while I'm here" additions — log as `ENH-` instead.
 3. **Verify.** For content migration: before/after page counts and a
@@ -121,7 +121,7 @@ You own steps 2, 3, 4, 6. App owns 1, 5, 7.
           ROADMAP.md
         adr/
           0001-*.md
-        YYYY-MM-DD/              # per-prompt notes + EODs
+        sessions/YYYY-MM-DD/     # per-prompt notes + EODs (gitignored)
         PATTERNS.md              # created when first pattern emerges
         ARCHITECTURE.md          # created after stack ADR approved
       src/                       # app source (stack TBD via ADR-0001)
@@ -169,11 +169,11 @@ Never silently absorb new work into the current task.
 
 ## Per-prompt notes and EOD
 
-- **Per-prompt notes:** `~/payrollperfect/docs/YYYY-MM-DD/<task>.md`.
+- **Per-prompt notes:** `~/payrollperfect/docs/sessions/YYYY-MM-DD/<task>.md`.
   Under 50 lines. What was done, files/commands touched, key findings
   or counts, carry-forward items. One per prompt. No exceptions.
 - **Rolling EOD:** update the active rolling EOD at
-  `~/payrollperfect/docs/YYYY-MM-DD/EOD-rolling.md` with each
+  `~/payrollperfect/docs/sessions/YYYY-MM-DD/EOD-rolling.md` with each
   substantive task. Do not create an EOD FINAL without explicit
   operator request.
 - **EOD FINAL:** written by app (with your tracker delta input) at the
@@ -192,7 +192,7 @@ Never silently absorb new work into the current task.
   touched, verification counts, per-prompt note path, proposed tracker
   transitions.
 - For large outputs (site dumps, diffs, build logs), save under
-  `docs/YYYY-MM-DD/<task>/` and return the path + a ≤20-line summary.
+  `docs/sessions/YYYY-MM-DD/<task>/` and return the path + a ≤20-line summary.
   Do not paste long blobs into chat.
 - When app pastes a spec, echo back: the task ID you'll use, the agent
   plan, the per-prompt note path. Then begin step 2.
@@ -204,7 +204,7 @@ Never silently absorb new work into the current task.
     Agent(s): <researcher|documenter|engineer|reviewer|team-lead>
     Files/commands touched: <list>
     Verification: <counts / sizes / statuses per spec>
-    Per-prompt note: ~/payrollperfect/docs/YYYY-MM-DD/<task>.md
+    Per-prompt note: ~/payrollperfect/docs/sessions/YYYY-MM-DD/<task>.md
     Tracker delta proposed: <ID old→new>, ...
     Summary: <≤5 lines>
     Proposals (if any): PROPOSAL: ...

@@ -89,7 +89,7 @@ work — don't do that without a new ADR.
 
 ## Links
 
-- INV-0001: /home/seadmin/payrollperfect/docs/2026-04-23/INV-0001-site-inventory.md
+- INV-0001: /home/seadmin/payrollperfect/docs/sessions/2026-04-23/INV-0001-site-inventory.md
 - ENH-0001: umbrella
 - ADR-0002: deploy model (pending)
 - ADR-0003: form handling (pending)
