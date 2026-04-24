@@ -1,0 +1,134 @@
+---
+import ZohoFormEmbed from './ZohoFormEmbed.astro';
+
+interface Props {
+  formUrl?: string;
+  buttonText?: string;
+}
+
+const { formUrl, buttonText = 'Get a quote' } = Astro.props;
+
+const dialogId = `lightbox-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="zoho-lightbox-wrapper" style="display: inline-block;">
+  <button
+    class="lightbox-trigger"
+    data-dialog={dialogId}
+    style="
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 52px;
+      padding: 0 32px;
+      background-color: var(--color-orange);
+      color: var(--color-white);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Geist', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+      box-shadow: 0 2px 8px rgba(200, 90, 30, 0.25);
+    "
+    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(200,90,30,0.35)'; this.style.backgroundColor='var(--color-orange-bright)';"
+    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(200,90,30,0.25)'; this.style.backgroundColor='var(--color-orange)';"
+  >
+    {buttonText}
+  </button>
+
+  <dialog
+    id={dialogId}
+    style="
+      border: none;
+      border-radius: 16px;
+      padding: 0;
+      max-width: min(640px, calc(100vw - 48px));
+      width: 100%;
+      box-shadow: 0 24px 80px rgba(13, 24, 40, 0.3);
+      background: var(--color-cream);
+    "
+  >
+    <!-- Modal header -->
+    <div style="
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid rgba(28,53,97,0.1);
+    ">
+      <h2 class="font-display" style="font-size: 20px; font-weight: 600; color: var(--color-navy); margin: 0;">
+        {buttonText}
+      </h2>
+      <button
+        class="lightbox-close"
+        data-dialog={dialogId}
+        aria-label="Close"
+        style="
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 4px;
+          color: var(--color-muted);
+          font-size: 24px;
+          line-height: 1;
+          transition: color 0.15s ease;
+        "
+        onmouseover="this.style.color='var(--color-ink)'" onmouseout="this.style.color='var(--color-muted)'"
+      >
+        &times;
+      </button>
+    </div>
+
+    <!-- Form content -->
+    <div style="padding: 24px;">
+      <ZohoFormEmbed formUrl={formUrl} />
+    </div>
+  </dialog>
+</div>
+
+<script>
+  function initLightboxes() {
+    document.querySelectorAll<HTMLButtonElement>('.lightbox-trigger').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const dialogId = btn.dataset.dialog;
+        const dialog = dialogId ? document.getElementById(dialogId) as HTMLDialogElement | null : null;
+        dialog?.showModal();
+      });
+    });
+
+    document.querySelectorAll<HTMLButtonElement>('.lightbox-close').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const dialogId = btn.dataset.dialog;
+        const dialog = dialogId ? document.getElementById(dialogId) as HTMLDialogElement | null : null;
+        dialog?.close();
+      });
+    });
+
+    document.querySelectorAll('dialog').forEach((dialog) => {
+      dialog.addEventListener('click', (e) => {
+        const rect = dialog.getBoundingClientRect();
+        const target = e.target as Element;
+        if (target === dialog && (
+          e.clientX < rect.left ||
+          e.clientX > rect.right ||
+          e.clientY < rect.top ||
+          e.clientY > rect.bottom
+        )) {
+          dialog.close();
+        }
+      });
+    });
+  }
+
+  initLightboxes();
+</script>
+
+<style>
+  dialog::backdrop {
+    background: rgba(13, 24, 40, 0.6);
+    backdrop-filter: blur(2px);
+  }
+</style>

@@ -1,7 +1,8 @@
 # ADR-0003: Form handling via Zoho Forms
 
-- Status: PROPOSED
+- Status: APPROVED
 - Date: 2026-04-23
+- Approved: 2026-04-23 (operator)
 - Author: app (reviewer)
 - Affects: ENH-0001, BUG-0001
 - Related: ADR-0001 (stack), ADR-0002 (dev+CI)

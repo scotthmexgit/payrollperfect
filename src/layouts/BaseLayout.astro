@@ -1,0 +1,204 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Professional payroll services for Utah businesses.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>{title}</title>
+  </head>
+  <body style="background-color: var(--color-cream); color: var(--color-ink);">
+
+    <header id="site-header" style="
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: var(--color-cream);
+      transition: box-shadow 0.2s ease;
+    ">
+      <div style="
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      ">
+        <!-- Logo -->
+        <a href="/" style="display: flex; align-items: center; flex-shrink: 0;" aria-label="Payroll Perfect home">
+          <img
+            src="/logos/payrollperfectlogotransparent.png"
+            alt="Payroll Perfect"
+            height="48"
+            style="height: 48px; width: auto;"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+          />
+          <span class="font-display" style="display: none; font-size: 22px; font-weight: 600; color: var(--color-navy);">
+            Payroll Perfect
+          </span>
+        </a>
+
+        <!-- Nav + phone -->
+        <nav style="display: flex; align-items: center; gap: 32px;">
+          <ul style="display: flex; gap: 28px; list-style: none; margin: 0; padding: 0;" class="nav-links">
+            <li>
+              <a href="/services" style="font-size: 15px; color: var(--color-muted); text-decoration: none; transition: color 0.15s ease;"
+                 onmouseover="this.style.color='var(--color-navy)'" onmouseout="this.style.color='var(--color-muted)'">Services</a>
+            </li>
+            <li>
+              <a href="/about" style="font-size: 15px; color: var(--color-muted); text-decoration: none; transition: color 0.15s ease;"
+                 onmouseover="this.style.color='var(--color-navy)'" onmouseout="this.style.color='var(--color-muted)'">About</a>
+            </li>
+            <li>
+              <a href="/contact" style="font-size: 15px; color: var(--color-muted); text-decoration: none; transition: color 0.15s ease;"
+                 onmouseover="this.style.color='var(--color-navy)'" onmouseout="this.style.color='var(--color-muted)'">Contact</a>
+            </li>
+          </ul>
+          <a href="tel:+18014469888" style="
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color-orange);
+            text-decoration: none;
+            white-space: nowrap;
+            transition: color 0.15s ease;
+          " onmouseover="this.style.color='var(--color-orange-bright)'" onmouseout="this.style.color='var(--color-orange)'">
+            (801) 446-9888
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer style="background-color: var(--color-navy); color: var(--color-cream);">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 64px 24px 40px;">
+        <div style="
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 48px;
+          margin-bottom: 48px;
+        " class="footer-grid">
+          <!-- Contact info -->
+          <div>
+            <h3 class="font-display" style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: var(--color-cream);">
+              Contact
+            </h3>
+            <address style="font-style: normal; line-height: 1.8; color: rgba(250,247,242,0.75); font-size: 14px;">
+              1206 W South Jordan Pkwy, Ste A<br />
+              South Jordan, UT 84095<br />
+              <a href="tel:+18014469888" style="color: var(--color-orange); text-decoration: none;">(801) 446-9888</a><br />
+              <br />
+              Mon–Thu: 8:30 AM – 5:00 PM<br />
+              Fri: 8:30 AM – 2:30 PM<br />
+              Sat–Sun: Closed
+            </address>
+          </div>
+
+          <!-- Navigation -->
+          <div>
+            <h3 class="font-display" style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: var(--color-cream);">
+              Navigation
+            </h3>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+              <li><a href="/" style="color: rgba(250,247,242,0.75); text-decoration: none; font-size: 14px; transition: color 0.15s ease;"
+                     onmouseover="this.style.color='var(--color-cream)'" onmouseout="this.style.color='rgba(250,247,242,0.75)'">Home</a></li>
+              <li><a href="/services" style="color: rgba(250,247,242,0.75); text-decoration: none; font-size: 14px; transition: color 0.15s ease;"
+                     onmouseover="this.style.color='var(--color-cream)'" onmouseout="this.style.color='rgba(250,247,242,0.75)'">Services</a></li>
+              <li><a href="/about" style="color: rgba(250,247,242,0.75); text-decoration: none; font-size: 14px; transition: color 0.15s ease;"
+                     onmouseover="this.style.color='var(--color-cream)'" onmouseout="this.style.color='rgba(250,247,242,0.75)'">About</a></li>
+              <li><a href="/contact" style="color: rgba(250,247,242,0.75); text-decoration: none; font-size: 14px; transition: color 0.15s ease;"
+                     onmouseover="this.style.color='var(--color-cream)'" onmouseout="this.style.color='rgba(250,247,242,0.75)'">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Portals -->
+          <div>
+            <h3 class="font-display" style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: var(--color-cream);">
+              Client Portals
+            </h3>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+              <li>
+                <a href="https://ppx.payrollperfect.com" target="_blank" rel="noopener noreferrer"
+                   style="color: rgba(250,247,242,0.75); text-decoration: none; font-size: 14px; transition: color 0.15s ease;"
+                   onmouseover="this.style.color='var(--color-cream)'" onmouseout="this.style.color='rgba(250,247,242,0.75)'">
+                  Employer Portal (PPX)
+                </a>
+              </li>
+              <li>
+                <a href="https://payrollperfect.myfileguardian.com" target="_blank" rel="noopener noreferrer"
+                   style="color: rgba(250,247,242,0.75); text-decoration: none; font-size: 14px; transition: color 0.15s ease;"
+                   onmouseover="this.style.color='var(--color-cream)'" onmouseout="this.style.color='rgba(250,247,242,0.75)'">
+                  File Guardian
+                </a>
+              </li>
+              <li>
+                <a href="https://ex.payrollperfect.com" target="_blank" rel="noopener noreferrer"
+                   style="color: rgba(250,247,242,0.75); text-decoration: none; font-size: 14px; transition: color 0.15s ease;"
+                   onmouseover="this.style.color='var(--color-cream)'" onmouseout="this.style.color='rgba(250,247,242,0.75)'">
+                  Employee Portal (EX)
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div style="
+          border-top: 1px solid rgba(250,247,242,0.15);
+          padding-top: 24px;
+          font-size: 13px;
+          color: rgba(250,247,242,0.5);
+          text-align: center;
+        ">
+          &copy; 2026 Payroll Perfect, Inc.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Sticky header shadow on scroll
+      const header = document.getElementById('site-header');
+      const onScroll = () => {
+        if (header) {
+          header.style.boxShadow = window.scrollY > 4
+            ? '0 1px 12px rgba(28, 53, 97, 0.1)'
+            : 'none';
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+    </script>
+
+    <style>
+      @media (max-width: 639px) {
+        .nav-links {
+          display: none !important;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr !important;
+        }
+      }
+    </style>
+
+  </body>
+</html>
